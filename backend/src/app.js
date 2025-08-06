@@ -7,7 +7,9 @@ const todoRoutes = require("./routes/todo.routes");
 const app = express();
 
 app.use(cors({
-  origin: "http://localhost:5173", // Vite dev server URL
+  origin: process.env.NODE_ENV === "production" 
+    ? [process.env.FRONTEND_URL || "https://your-vercel-app.vercel.app"]
+    : "http://localhost:5173", // Vite dev server URL
   credentials: true // Allow cookies to be sent
 }));
 
